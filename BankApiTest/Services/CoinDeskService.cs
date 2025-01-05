@@ -28,7 +28,7 @@ namespace BankApiTest.Services
 
 			DateTime updateTimeUtc = DateTime.ParseExact(
 				coinDeskData.Time.Updated,
-				"MMM dd, yyyy HH:mm:ss UTC",
+				"MMM d, yyyy HH:mm:ss UTC",
 				CultureInfo.InvariantCulture);
 
 			TimeZoneInfo taiwanTimeZone = TimeZoneInfo.FindSystemTimeZoneById("Taipei Standard Time");
