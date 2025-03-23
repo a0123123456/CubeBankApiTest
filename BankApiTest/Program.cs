@@ -19,12 +19,21 @@ namespace BankApiTest
 			builder.Services.AddEndpointsApiExplorer();
 			builder.Services.AddSwaggerGen();
 
-			//1.取得組態中資料庫連線設定
-			string? connectionString = builder.Configuration.GetConnectionString("BankDbContext");
+			// 根據環境決定使用的資料庫
+			if (builder.Environment.IsEnvironment("IntegrationTest"))
+			{
+				// 測試環境：使用 In-Memory 資料庫
+				builder.Services.AddDbContext<BankDbContext>(options =>
+					options.UseInMemoryDatabase("TestDb"));
+			}
+			else
+			{
+				// 正式或開發環境：使用 SQL Server
+				string? connectionString = builder.Configuration.GetConnectionString("BankDbContext");
 
-			//2.註冊EF Core的DbContext
-			builder.Services.AddDbContext<BankDbContext>(options => options.UseSqlServer(connectionString));
-
+				builder.Services.AddDbContext<BankDbContext>(options =>
+					options.UseSqlServer(connectionString));
+			}
 
 			var app = builder.Build();
 

@@ -19,13 +19,13 @@ namespace BankApiTest.Controllers
 			_context = context;
 		}
 
-		[HttpGet]
+		[HttpGet("CurrenciesQuery")]
 		public async Task<ActionResult<IEnumerable<Currency>>> GetCurrencies()
 		{
 			return await _context.Currencies.OrderBy(c => c.Code).ToListAsync();
 		}
 
-		[HttpPost]
+		[HttpPost("AddCurrencies")]
 		public async Task<ActionResult<Currency>> AddCurrency(Currency currency)
 		{
 			_context.Currencies.Add(currency);
@@ -33,7 +33,7 @@ namespace BankApiTest.Controllers
 			return CreatedAtAction(nameof(GetCurrencies), new { id = currency.Id }, currency);
 		}
 
-		[HttpPut("{id}")]
+		[HttpPut("UpdateCurrency/{id}")]
 		public async Task<IActionResult> UpdateCurrency(int id, Currency currency)
 		{
 			if (id != currency.Id) return BadRequest();
@@ -43,7 +43,7 @@ namespace BankApiTest.Controllers
 			return NoContent();
 		}
 
-		[HttpDelete("{id}")]
+		[HttpDelete("DeleteCurrency/{id}")]
 		public async Task<IActionResult> DeleteCurrency(int id)
 		{
 			var currency = await _context.Currencies.FindAsync(id);

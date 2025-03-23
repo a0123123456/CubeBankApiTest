@@ -22,7 +22,7 @@ namespace BankApiTest.Tests.Controllers
 				.Options;
 		}
 
-		// 測試 GET /api/currencies
+		// 測試 GET /api/Currencies/CurrenciesQuery
 		[Fact]
 		public async Task GetCurrencies_ShouldReturnCurrencies()
 		{
@@ -48,7 +48,7 @@ namespace BankApiTest.Tests.Controllers
 			}
 		}
 
-		// 測試 POST /api/currencies
+		// 測試 POST /api/Currencies/AddCurrencies
 		[Fact]
 		public async Task AddCurrency_ShouldAddCurrency()
 		{
@@ -69,7 +69,7 @@ namespace BankApiTest.Tests.Controllers
 			}
 		}
 
-		// 測試 PUT /api/currencies/{id}
+		// 測試 PUT /api/Currencies/UpdateCurrency/{id}
 		[Fact]
 		public async Task UpdateCurrency_ShouldUpdateCurrency()
 		{
@@ -95,7 +95,7 @@ namespace BankApiTest.Tests.Controllers
 			}
 		}
 
-		// 測試 DELETE /api/currencies/{id}
+		// 測試 DELETE /api/Currencies/DeleteCurrency/{id}
 		[Fact]
 		public async Task DeleteCurrency_ShouldRemoveCurrency()
 		{
